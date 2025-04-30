@@ -1,10 +1,12 @@
 # Mini Course Registration System
-This project is a simple Mini Course Registration System built using PHP. It simulates a basic registration feature commonly found on university websites.
+This project is a Mini Course Registration System developed using PHP, simulating a basic system used in university websites for student course registration.
 
-# Project Description
-The system allows students to:
-- View a list of available courses
-- Select and register for preferred courses
-- Display a summary of their selected courses
+# Project Overview
+The system provides the following features:
+- User Registration – Students can create an account by providing basic credentials.
+- Login System – Only registered users can log in and access course registration.
+- View Available Courses – Logged-in students can browse a list of courses.
+- Register for Courses – Students can select and register for their preferred courses.
+- Summary View – A display of all courses the student has registered for.
 
-The available courses are stored in a PHP associative array, making the system lightweight and easy to modify for educational purposes.
+All student account data and course data are stored using PHP associative arrays 
