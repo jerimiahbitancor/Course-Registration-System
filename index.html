@@ -3,9 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <title>Course Monitoring System</title>
 </head>
 <body>
+  <h1 class="title">Course Monitoring System</h1>
+  <div class="login_form" id="login">
+    <p>LOG IN</p>
+    <form action="index.php" method="POST">
+      <label for="username">ID Number:</label>
+      <input type="text" id="username" name="username" placeholder="Enter Student ID" aria-placeholder="2X-XXXXXX" required>
+      <br>
+      <button type="submit">Log In</button>
+      <button type="button" id="login" onclick="openForm()">No account yet? Register here.</button>
+    </form>
+  </div>
+
+  <div class="registration_form" id="registration">
+    <p>REGISTRATION</p>
+    <form action="index.php" method="POST">
+
+      <div class="form_group">
+        <img id="studentImage" src="../pictures/student.png">
+
+        <div class="form1">
+          <div class="inputs">
+            <label>ID Number:</label>
+            <input type="text" name="idnumber" placeholder="Enter Student ID" required>
+          </div>
+
+          <div class="inputs">
+            <label>Age:</label>
+            <input type="number" name="age" placeholder="Enter Age" required>
+          </div>
+
+          <div class="inputs">
+            <label>Sex:</label>
+            <select name="sex" id="sex" required>
+                <option value="" disabled selected>Select Sex</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+          </div>
+        </div>
   
+        <div class="form2">
+          <div class="inputs">
+            <label>Last Name:</label>
+            <input type="text" name="lastname" placeholder="Enter Last Name" required>
+          </div>
+
+          <div class="inputs">
+            <label>First Name:</label>
+            <input type="text" name="firstname" placeholder="Enter First Name" required>
+          </div>
+
+          <div class="inputs">
+            <label>Middle Name:</label>
+            <input type="text" name="middlename" placeholder="Enter Middle Name" required>
+          </div>
+        </div>
+  
+        <div class="form3">
+          <div class="inputs">
+            <label>Program:</label>
+            <input type="text" name="program" placeholder="Enter Program" required>
+          </div>
+
+          <div class="inputs">
+            <label>Year & Section:</label>
+            <input type="text" name="yearsection" placeholder="Enter Year - Section" required>
+          </div>
+
+          <div class="inputs">
+            <label>Department:</label>
+            <input type="text" name="department" placeholder="Enter Department" required>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit">Register</button>
+      <button type="button"  onclick="closeForm()">Already have an account? Log in here.</button>
+    </form>
+  </div>
 </body>
+
+  <script src="script.js"></script> 
 </html>
