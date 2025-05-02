@@ -23,19 +23,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idnumber'])) {
     // Save to session users
     $_SESSION['users'][$user['idnumber']] = $user;
     $_SESSION['loggedin'] = $user['idnumber'];
-    header('Location: courses.php');
+
+    // DEBUGGING OUTPUT
+    echo "<pre>";
+    echo "Student Registered Successfully!\n";
+    print_r($_SESSION['users']);
+    echo "</pre>";
+    
+    // Comment this out temporarily while debugging
+    header('Location: ../index.html');
     exit;
 }
+
 
 // Handle Login
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'])) {
     $id = $_POST['username'];
     if (isset($_SESSION['users'][$id])) {
         $_SESSION['loggedin'] = $id;
-        header('Location: courses.php');
+        header('Location: ../dashboard.html');
         exit;
     } else {
         echo "<p style='color:red;'>User not found. Please register first.</p>";
     }
 }
+
+
 ?>

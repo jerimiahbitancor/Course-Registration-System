@@ -1,16 +1,18 @@
+<?php include 'php/student.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="css/style.css">
   <title>Course Monitoring System</title>
 </head>
 <body>
   <h1 class="title">Course Monitoring System</h1>
   <div class="login_form" id="login">
     <p>LOG IN</p>
-    <form action="../php/index.php" method="POST">
+    <form action="php/index.php" method="POST">
       <label for="username">ID Number:</label>
       <input type="text" id="username" name="username" placeholder="Enter Student ID" aria-placeholder="2X-XXXXXX" required>
       <br>
@@ -21,10 +23,10 @@
 
   <div class="registration_form" id="registration">
     <p>REGISTRATION</p>
-    <form action="../php/index.php" method="POST">
+    <form action="php/index.php" method="POST">
 
       <div class="form_group">
-        <img id="studentImage" src="../pictures/student.png">
+        <img id="studentImage" src="pictures/student.png">
 
         <div class="form1">
           <div class="inputs">

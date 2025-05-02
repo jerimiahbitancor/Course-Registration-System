@@ -1,37 +1,41 @@
+<?php include 'php/student.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="/css/student.css">
+  <link rel="stylesheet" href="css/student.css">
   <title>Course Monitoring System</title>
 </head>
 <body>
   <section class="upper_content">
     <div class="right_header">
-      <img src="../pictures/logo.png" alt="Logo" class="logo">
+      <img src="pictures/logo.png" alt="Logo" class="logo">
       <div class="titles" >
         <h1 class="title1">Pamantasan ng Lungsod ng Pasig</h1>
         <h2 class="title2">Course Monitoring System</h2>
       </div>
     </div>
     <div class="left_header">
-      <a href="index.php">HOME</a>
-      <a href="index.php">STUDENT PROFILE</a>
-      <a href="index.php"><i class='bx bx-user-circle'></i></a>
+      <a href="./dashboard.html">HOME</a>
+      <a href="./student.html">STUDENT PROFILE</a>
+      <a href="php/logout.php"><i class='bx bx-user-circle'></i></a>
     </div>
   </section>
 
   <section class="main_content">
     <div class="student_profile">
       <img src="../pictures/male_student.png" alt="Student Image" class="student_image">
-      <p>Student ID</p>
+      <p><strong>ID:</strong> <?= htmlspecialchars($studentData['idnumber']) ?></p>
       <div>
-        <p>Name</p>
-        <p>Name</p>
-        <p>Name</p>
-        <p>Name</p>
+        <p><strong>Name:</strong> <?= htmlspecialchars($studentData['firstname'] . ' ' . $studentData['middlename'] . ' ' . $studentData['lastname']) ?></p>
+        <p><strong>Age:</strong> <?= htmlspecialchars($studentData['age']) ?></p>
+        <p><strong>Sex:</strong> <?= htmlspecialchars($studentData['sex']) ?></p>
+        <p><strong>Program:</strong> <?= htmlspecialchars($studentData['program']) ?></p>
+        <p><strong>Year & Section:</strong> <?= htmlspecialchars($studentData['yearsection']) ?></p>
+        <p><strong>Department:</strong> <?= htmlspecialchars($studentData['department']) ?></p>
       </div>
     </div>
 
@@ -47,37 +51,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>CS101</td>
-              <td>Introduction to Computer Science</td>
-            </tr>
-            
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>CS101</td>
-              <td>Introduction to Computer Science</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>CS101</td>
-              <td>Introduction to Computer Science</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>CS101</td>
-              <td>Introduction to Computer Science</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>CS101</td>
-              <td>Introduction to Computer Science</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>CS101</td>
-              <td>Introduction to Computer Science</td>
-            </tr>
+            <?php if (empty($enrolledCourses)): ?>
+              <tr>
+                <td colspan="3">No courses enrolled.</td>
+              </tr>
+            <?php else: ?>
+              <?php foreach ($enrolledCourses as $code): ?>
+                <tr>
+                  <td><input type="checkbox" name="unenroll[]" value="<?= $code ?>"></td>
+                  <td><?= $code ?></td>
+                  <td><?= $courses[$code] ?? 'Unknown Course' ?></td>
+                </tr>
+              <?php endforeach; ?>
+            <?php endif; ?>
           </tbody>
         </table>
       </div>
@@ -86,7 +72,6 @@
       </div>
     </div>
     </div>
-
   </section>    
 </body>
 </html>
