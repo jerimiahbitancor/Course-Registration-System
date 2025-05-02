@@ -25,15 +25,35 @@ $courses = [
 if (!isset($_SESSION['enrolled'][$studentId])) {
     $_SESSION['enrolled'][$studentId] = [];
 }
+// echo "<pre>";
+// print_r($studentId);
+// echo "</pre>";
 
 // Handle form submission for enrollment
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['courses'])) {
-    foreach ($_POST['courses'] as $code) {
-        if (!in_array($code, $_SESSION['enrolled'][$studentId])) {
-            $_SESSION['enrolled'][$studentId][] = $code;
+    $selected = $_POST['courses'];
+
+    if (count($selected) !== 3) {
+        $error = "Please select exactly 3 courses.";
+    } else {
+        $enrolled = &$_SESSION['enrolled'][$studentId];
+        foreach ($selected as $code) {
+            if (!in_array($code, $enrolled)) {
+                $enrolled[] = $code;
+            }
         }
+        $success = "Courses successfully enrolled!";
     }
 }
 
-include" ../dashboard.html";
+// Handle form submission for enrollment
+// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['courses'])) {
+//     foreach ($_POST['courses'] as $code) {
+//         if (!in_array($code, $_SESSION['enrolled'][$studentId])) {
+//             $_SESSION['enrolled'][$studentId][] = $code;
+//         }
+//     }
+// }
+
 ?>

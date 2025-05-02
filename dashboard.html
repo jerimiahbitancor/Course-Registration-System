@@ -26,15 +26,11 @@
   </section>
 
   <section class="main_content">
-    
     <div class="enrolled_courses">
-
       <div class="enrolled_header">
-        <h2>Enrolled Courses</h2>
+        <h2>Enrolled Courses (<?= count($_SESSION['enrolled'][$studentId]) ?>)</h2>
       </div>
       
-      
-
       <div class="course_list">
         <?php
           if (empty($_SESSION['enrolled'][$studentId])) {
@@ -78,7 +74,31 @@
       </form>
     </div>
   </section>
+
+  <?php if (isset($error) || isset($success)): ?>
+  <div id="overlay" class="overlay"></div>
+  <div class="message_popup" id="messagePopup">
+    <p><?= $error ?? $success ?></p>
+    <button id="closePopup" class="close_popup">OK</button>
+  </div>
+  <?php endif; ?>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", function () {
+      const popup = document.getElementById("messagePopup");
+      const overlay = document.getElementById("overlay");
+      const closeBtn = document.getElementById("closePopup");
+    
+      if (popup && overlay && closeBtn) {
+        popup.classList.add("show");
+        overlay.classList.add("show");
+      
+        closeBtn.addEventListener("click", function () {
+          popup.classList.remove("show");
+          overlay.classList.remove("show");
+        });
+      }
+    });
+  </script>
 </body>
 </html>
-
-<!-- (<?= count($_SESSION['enrolled'][$studentId]) ?>)-->

@@ -27,7 +27,7 @@
 
   <section class="main_content">
     <div class="student_profile">
-      <img src="../pictures/male_student.png" alt="Student Image" class="student_image">
+      <img src="../pictures/student.png" alt="Student Image" class="student_image">
       <p><strong>ID:</strong> <?= htmlspecialchars($studentData['idnumber']) ?></p>
       <div>
         <p><strong>Name:</strong> <?= htmlspecialchars($studentData['firstname'] . ' ' . $studentData['middlename'] . ' ' . $studentData['lastname']) ?></p>
@@ -41,37 +41,49 @@
 
     <div class="enrolled_courses">
       <h2>Enrolled Courses</h2>
-      <div class="details_content">
-        <table>
-          <thead>
-            <tr>
-              <th style="width: 30px;"></th>
-              <th>Course Code</th>
-              <th>Course Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php if (empty($enrolledCourses)): ?>
+      <form method="POST" action="student.html">
+        <div class="details_content">
+          <table>
+            <thead>
               <tr>
-                <td colspan="3">No courses enrolled.</td>
+                <th style="width: 30px;"></th>
+                <th>Course Code</th>
+                <th>Course Name</th>
               </tr>
-            <?php else: ?>
-              <?php foreach ($enrolledCourses as $code): ?>
+            </thead>
+            <tbody>
+              <?php if (empty($enrolledCourses)): ?>
                 <tr>
-                  <td><input type="checkbox" name="unenroll[]" value="<?= $code ?>"></td>
-                  <td><?= $code ?></td>
-                  <td><?= $courses[$code] ?? 'Unknown Course' ?></td>
+                  <td colspan="3">No courses enrolled.</td>
                 </tr>
-              <?php endforeach; ?>
-            <?php endif; ?>
-          </tbody>
-        </table>
-      </div>
-      <div class="unenroll_button_container">
-        <button type="button" class="unenroll_button">Unenroll</button>
-      </div>
+              <?php else: ?>
+                <?php foreach ($enrolledCourses as $code): ?>
+                  <tr>
+                    <td><input type="checkbox" name="unenroll[]" value="<?= $code ?>"></td>
+                    <td><?= $code ?></td>
+                    <td><?= $courses[$code] ?? 'Unknown Course' ?></td>
+                  </tr>
+                <?php endforeach; ?>
+              <?php endif; ?>
+            </tbody>
+          </table>
+        </div>
+        <div class="unenroll_button_container">
+          <button type="submit" class="unenroll_button" onclick="return confirmUnenroll()">Unenroll</button>
+        </div>
+      </form>
     </div>
-    </div>
-  </section>    
+  </section>  
+  
+  <!--POPUP FORM-->
+
+  <div id="overlay" class="overlay"></div>
+  <div class="message_popup" id="messagePopup">
+    <p>Are you sure you want to unenroll from the selected courses?</p>
+    <button id="cancelUnenroll" class="cancel">CANCEL</button>
+    <button id="confirmUnenroll" class="okay">OK</button>
+  </div>
+
+  <script src="js/student.js"></script> 
 </body>
 </html>

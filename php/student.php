@@ -23,5 +23,12 @@ $courses = [
     "PE104" => "PATHfit 4"
 ];
 
-
+// Handle unenrollment
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['unenroll'])) {
+    $toRemove = $_POST['unenroll'];
+    $_SESSION['enrolled'][$studentId] = array_diff($enrolledCourses, $toRemove);
+    // Refresh page to reflect changes
+    header("Location: student.html");
+    exit;
+}
 ?>

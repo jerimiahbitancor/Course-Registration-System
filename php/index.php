@@ -44,7 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'])) {
         header('Location: ../dashboard.html');
         exit;
     } else {
-        echo "<p style='color:red;'>User not found. Please register first.</p>";
+        $errorMessage = "User not found. Please register first.";
+        header('Location: ../index.html');
+        exit;
     }
 }
 
